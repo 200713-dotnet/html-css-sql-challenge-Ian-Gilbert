@@ -55,7 +55,8 @@ VALUES
 
 insert into Employee.Department
     ([Name], [Location])
-VALUES('IT', 'East')
+VALUES
+    ('IT', 'East');
 
 
 insert into Employee.Employee
@@ -77,15 +78,45 @@ VALUES
 insert into Employee.EmpDetails
     (EmployeeID, Salary, Address1, City, [State], Country)
 VALUES
-    (7, 50000, '1 Street Ave.', 'city', 'CA', 'USA')
+    (7, 50000, '1 Street Ave.', 'city', 'CA', 'USA');
 
 insert into Employee.EmpDetails
     (EmployeeID, Salary, Address1, City, [State], Country)
 VALUES
-    (8, 50000, '1 Street Ave.', 'city', 'CA', 'USA')
+    (8, 50000, '1 Street Ave.', 'city', 'CA', 'USA');
 
 insert into Employee.EmpDetails
     (EmployeeID, Salary, Address1, City, [State], Country)
 VALUES
-    (9, 50000, '1 Street Ave.', 'city', 'CA', 'USA')
+    (9, 50000, '1 Street Ave.', 'city', 'CA', 'USA');
 
+
+SELECT *
+FROM Employee.Employee AS Emp
+    INNER JOIN Employee.Department AS Dept
+    ON Emp.DeptID = Dept.ID
+WHERE Dept.Name = 'Marketing';
+
+
+SELECT SUM(salary)
+from Employee.EmpDetails AS details
+    Inner JOIN Employee.Employee AS emp
+    ON details.EmployeeID = emp.ID
+    Inner Join Employee.Department AS Dept
+    ON emp.DeptID = Dept.ID
+WHERE Dept.Name = 'Marketing';
+
+
+
+select COUNT(*)
+FROM Employee.Employee
+GROUP BY DeptID;
+
+
+UPDATE Employee.EmpDetails
+SET salary = 9000
+FROM Employee.EmpDetails AS details
+    INNER JOIN Employee.Employee AS Emp
+    ON details.EmployeeID = Emp.ID
+WHERE Emp.Firstname = 'Tina'
+    AND Emp.LastName = 'Smith';
