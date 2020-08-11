@@ -32,7 +32,7 @@ CREATE TABLE Employee.Employee
 create table Employee.EmpDetails
 (
     ID int not null IDENTITY(1, 1),
-    EmployeeID int not null,
+    EmployeeID int not null UNIQUE,
     Salary money not null,
     Address1 NVARCHAR(50) not null,
     Address2 NVARCHAR(50) null,
